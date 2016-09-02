@@ -1,0 +1,131 @@
+
+
+<html>
+<head>
+<script>
+function showTable(str) {
+    if (str == "") {
+        document.getElementById("Field").innerHTML = "Please select at least one table";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Field").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","/hw2/table.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+function showField(str) {
+    if (str == "") {
+        document.getElementById("Search").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("Search").innerHTML = xmlhttp.responseText;
+                
+            }
+        }
+        xmlhttp.open("GET","/hw2/field.php?field="+str,true);
+        xmlhttp.send();
+    }
+}
+function showItem(str) {
+    if (str == "") {
+        document.getElementById("ItemTable").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("ItemTable").innerHTML = xmlhttp.responseText;
+                alert(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET","/hw2/item.php?Item="+str,true);
+        xmlhttp.send();
+    }
+}
+
+function checkField(x){
+   if(x.submit.value=="price") {
+    if(isNaN(x.priceFrom.value) && isNaN(x.priceTo.value)) {
+        return true;
+    }
+    else {
+        return false;
+        alert("Invalid price number");
+    }
+   }
+   if(x.submit.value=="pay") {
+    if(isNaN(x.payFrom.value) && isNaN(x.payTo.value)){
+        return true;
+    }
+    else {
+        return false;
+    }
+   }
+
+
+}
+</script>
+</head>
+<body background="back2.jpg">
+
+Select a table:
+<form id ="search" action="range.php" method="POST" onSubmit="return checkField(this)" >
+<select name="TABLES" onchange="showTable(this.value)" >
+  <option value="">select a table</option>
+  <option value="Product">Product</option>
+  <option value="Employee">Employee</option>
+  <option value="specialSale">Special Sale</option>
+  <option value="ProductCategory">Product Category</option>
+  </select>
+<br>
+<div id="Field"><b></b></div><br>
+<div id="Search"><b></b></div><br>
+
+
+Price Range(Enter -1 if not chosen<br>  
+From:
+<input type="number" name="priceFrom" class="adduser_input" required>
+To:<input type="number" name="priceTo" class="adduser_input" required>
+<input type="submit" name='submit' class="adduser_input" value="price"><br><br>
+
+
+Pay Range(Enter -1 if not choosen):<br>
+From:
+<input type="number" name="payFrom" class="adduser_input" required>
+To:<input type="number" name="payTo" class="adduser_input" required>
+<input type="submit" name='submit' class="adduser_input" value="pay"><br>
+</form>
+
+<div id="ItemTable"><b></b></div><br>
+
+<form id= 'logout' action='login.php' method='POST'>
+    <input type='submit' name='submit' value='logout'>
+</form>
+</body>
+</html>

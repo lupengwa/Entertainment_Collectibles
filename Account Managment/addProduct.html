@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+
+<form id = "user" action="addUser.php" method="POST">
+<h1> Add a product </h1>
+<select name="productCategory">
+<option value="0">select user type</option>
+<option value="Admin">administrator</option>
+<option value="Employee">employee</option>
+<option value="Manager">manager</option>
+</select><br><br>
+username: 
+<input type="text" class="adduser_input" name ="username"> <br>
+password: 
+<input type="text" class="adduser_input" name="password"> <br>
+<button type="button" name="checkInput" onClick="checkField()">Check Input</button>
+<input type="submit" class="adduser_input" value = "Submit">
+</form>
+
+
+
+<script> 
+function checkField() {
+	if(user.usertype.value == 0){
+		alert("Please a user type");
+	} else if( user.username.value == "") {
+		alert("Please enter a username");
+	} else if(user.password.value == "") {
+		alert("Please enter paswword");
+	} 
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#user {
+background: -webkit-gradient(linear, bottom, left 175px, from(#CCCCCC), to(#EEEEEE));
+background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+margin:auto;
+position:relative;
+width:550px;
+height:800px;
+font-family: Tahoma, Geneva, sans-serif;
+font-size: 14px;
+font-style: italic;
+line-height: 24px;
+font-weight: bold;
+color: #09C;
+text-decoration: none;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+padding:10px;
+border: 1px solid #999;
+border: inset 1px solid #333;
+-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+#error{
+	position:relative;
+	left:4.5in;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+}
+#Web {
+	position:relative;
+	left:6in;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 30px;
+}
+.adduser_input    {
+width:375px;
+display:block;
+border: 1px solid #999;
+height: 25px;
+-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+#admin{
+	position:relative;
+	left:4.5in;
+}
+</style>
+
+<script>
+function checkUser(x){
+	if(x.usertype.value== "0"){
+		alert("please select a user type");
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+function checkSpecial(x){
+	if(x.dateEnd.value < x.dateStart.value){
+		alert("End date must later or equal to start date");
+		return false;
+	}
+	if(x.perOff.value<0 || x.perOff.value>100){
+		alert("Please enter a percentage between 0 and 100");
+		return false;
+	}
+}
+</script>
+</head>
+<body background="back2.jpg">

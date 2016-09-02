@@ -1,0 +1,35 @@
+<?php
+session_start();
+$time = time();
+if(!isset($_SESSION['username']) && !isset($_SESSION['usertype'])) {
+	require 'prelogin.html';
+	echo '<p style="color:red"> Please Login First</p>';
+	require 'postlogin.html';
+	
+} elseif($_SESSION['usertype'] != "Admin") {
+	require 'prelogin.html';
+	echo '<p style="color:red"> Wrong UserType!</p>';
+	require 'postlogin.html';
+}elseif(($time - $_SESSION['start']) > 500) {
+	require 'prelogin.html';
+	echo '<p style="color:red"> Timeout</p>';
+	require 'postlogin.html';
+	session_destroy();
+} 
+$field = $_GET['field'];
+$mysql ="select $field from $_SESSION['table']";
+$con = mysql_connect('cs-server.usc.edu:9580','root','900125');
+if(!$con) {
+		die ("unable to connect the server");
+	}
+mysql_select_db('websale',$con);
+$mysql ="select $field from $_SESSION['table']";
+$res = mysql_query($sql);
+echo "<select name= 'item' onChange=showItem(this.value)>";
+while($row=mysql_fetch_assoc($res)){
+	echo "<option value='".$row['Field']."'>".$row['Field']."</option>;";
+}
+echo "</select>";
+
+
+?>

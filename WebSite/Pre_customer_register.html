@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+
+<script
+src="js/jquery.validate.js">
+</script>
+<script>
+/*
+function checkExistence(str) {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("user").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","/hw3/checkUser.php?q=str",true);
+        xmlhttp.send();
+}*/
+function checkField(x){
+
+
+
+
+}
+
+jQuery.validator.addMethod("isstate", function(value) { var states = [ "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "DC", "FM", "GU", "MH", "MP", "PR", "PW", "VI" ]; return $.inArray(value.toUpperCase(), states) != -1; }, "Data provided is not a valid state");
+$("reg").validate();
+</script>
+<style>
+#reg{
+	position:relative;
+	left:5.1in;
+	top:1in;
+	padding:10px;
+	border:2px solid;
+	width:5.1in;
+}
+
+</style>
+</head>
+<body>
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script>
+function checkField(x){
+	if(x.usertype.value== "0"){
+		alert("please select a user type");
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+</script>
+</head>
+<body background="back2.jpg">
+
+<form id = "user" action="addUser.php" method="POST" onsubmit="return checkField(this)">
+<h1> Add a user </h1>
+<select name="usertype">
+<option value="0">select user type</option>
+<option value="Admin">administrator</option>
+<option value="Employee">employee</option>
+<option value="Manager">manager</option>
+</select><br><br>
+username: 
+<input type="text" class="adduser_input" name ="username" required> <br>
+password: 
+<input type="text" class="adduser_input" name="password" required> <br>
+<input type="submit" class="adduser_input" value = "Submit">
+</form>
+
+
+
+<script> 
+function checkField() {
+	if(user.usertype.value == 0){
+		alert("Please a user type");
+	} else if( user.username.value == "") {
+		alert("Please enter a username");
+	} else if(user.password.value == "") {
+		alert("Please enter paswword");
+	} 
+
+
+</script>
+
+
+</body>
+</html>

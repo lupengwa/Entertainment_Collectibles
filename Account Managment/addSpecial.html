@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script> 
+function validate() {
+	var x=user.dateStart.value;
+	var y=user.dateEnd.value;
+	var z=user.perOff.value ;
+	var u=user.fix.value;
+	if(x =""){
+		alert("Please a start date type");
+		return false;
+	} else if( y == "") {
+		alert("Please enter an end date");
+		return false;
+	} else if(z == "") {
+		alert("Please enter percentage off");
+		return false;
+	} 
+	return true;
+}
+function getProductinformation
+</script>
+
+</head>
+<body>
+
+<form id = "user" action="addSpecial.php" onSubmit="return validate()"  method="POST">
+<h1> Add a Special Sale </h1>
+<select name="usertype">
+<option value="0">select user type</option>
+<option value="Admin">administrator</option>
+<option value="Employee">employee</option>
+<option value="Manager">manager</option>
+</select><br><br>
+Start Date 
+<input type="date" class="adduser_input" name ="dateStart"> <br>
+End Date: 
+<input type="date" class="adduser_input" name="dateEnd"> <br>
+Percentage Off(%):
+<input type="number" class="adduser_input" name="perOff"> <br>
+Fixed Amount Off:
+<input type="number" class="adduser_input" name="fix"> <br>
+<input type="submit" class="adduser_input" value = "Submit">
+</form>
+
+
+</body>
+</html>

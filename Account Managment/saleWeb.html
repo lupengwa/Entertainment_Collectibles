@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<script>
+
+//Category List
+$(document).ready(createOption);
+function createOption(){
+       if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        		var length=xmlhttp.responseText.length;
+            	var tmp=xmlhttp.responseText.substring(1,length-2);
+                var content=tmp.split(",");
+                var x=document.getElementById("category");
+                for(i=0;i<content.length;i++){
+                	y=document.createElement("option");
+                	y.value=content[i++];
+                	y.text=content[i];
+                	x.appendChild(y);
+                }
+               
+                
+            }
+        }
+        xmlhttp.open("GET","/HW3/cate.php",true);
+        xmlhttp.send();
+}
+
+//SEARCH function
+$(document).ready(job);
+function job(){
+  $(".search").click(searchItem);
+  function searchItem(){
+
+    var cate=document.getElementById("category").value;
+    var content=webInput.searchContent.value;
+     
+    if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+    	xmlhttp = new XMLHttpRequest();
+    } else {
+            // code for IE6, IE5
+         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if(cate=="" && content==""){
+     	document.getElementById("error").innerHTML="Please select a category or enter the items in search field"; 
+    }else if(cate!="" && content==""){	
+    	  xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        		document.getElementById("Items").innerHTML=xmlhttp.responseText;
+            }
+            
+        }
+        xmlhttp.open("GET","/HW3/search.php?cate="+cate,true);
+        xmlhttp.send(); 
+    }else{
+    	  xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        		document.getElementById("Items").innerHTML=xmlhttp.responseText;
+        		
+            }
+            
+        }
+        xmlhttp.open("GET","/HW3/search.php?content="+content,true);
+        xmlhttp.send(); 
+    }
+  }
+}
+
+function CustomerInfor(){
+    document.getElementById("webInput").style.display="none";
+    document.getElementById("change").style.display="inline";
+    if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+            // code for IE6, IE5
+         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    
+     xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("cusInfor").innerHTML=xmlhttp.responseText;
+            }
+            
+        }
+        xmlhttp.open("GET","/HW3/customerInfo.php",true);
+        xmlhttp.send();    
+}
+
+
+</script>
+<style>
+#webInput{
+ position:relative;
+	left:4in;
+	top:0.5in;	
+}
+
+#customerLogin {
+    position:relative;
+    left:4in;
+    top:0.5in;    
+}
+#profile {
+ 
+    display:inline;
+}
+#orderInfo {
+  
+    display:inline;
+}
+#cusInfor {
+    position:relative;
+    left:5in;
+    top:0.5in;
+}
+</style>
+</head>
+<body>
+</body >
+<form id="orderInfo"> 
+<input type="button" name="orderInfo" value="orderInfo">
+</form>
+<form id="profile" action="changeCustomer.php" method="POST">
+<input type="button" name="profile" value="profile" onClick="CustomerInfor()">
+<input type="submit" id= "change" name="change" value="change" style="display:none;">
+</form>
